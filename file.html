@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Custom styles for the pop-up modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal.open {
+      display: flex;
+    }
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+    /* Fixed aspect ratio for carousel images */
+    .carousel img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+    .carousel img:hover {
+      transform: scale(1.05);
+    }
+    /* Sticky header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+    /* Hamburger menu */
+    #menu {
+      display: none;
+    }
+    #menu.open {
+      display: flex;
+    }
+    /* Hide scrollbar but allow scrolling */
+    .carousel {
+      overflow-x: auto;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+    }
+    .carousel::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, and Opera */
+    }
+    /* Footer */
+    footer {
+      background: rgba(17, 24, 39, 0.8); /* Matching the dark theme */
+      backdrop-filter: blur(10px);
+    }
+    /* Glow effect for the contact button */
+    .glow-button {
+      background: linear-gradient(45deg, #3b82f6, #6366f1);
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.7);
+      transition: box-shadow 0.3s ease;
+    }
+    .glow-button:hover {
+      box-shadow: 0 0 25px rgba(59, 130, 246, 1);
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+  <!-- Header -->
+  <header class="bg-gray-800/80 py-4 px-6">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-400">My Portfolio</h1>
+      <nav class="hidden md:flex space-x-6">
+        <a href="#hero" class="hover:text-blue-400">Home</a>
+        <a href="#logos" class="hover:text-blue-400">Logos</a>
+        <a href="#posters" class="hover:text-blue-400">Posters</a>
+        <a href="#contact" class="hover:text-blue-400">Contact</a>
+      </nav>
+      <button id="hamburger" class="md:hidden text-blue-400">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="menu" class="md:hidden mt-4 flex flex-col space-y-2">
+      <a href="#hero" class="hover:text-blue-400">Home</a>
+      <a href="#logos" class="hover:text-blue-400">Logos</a>
+      <a href="#posters" class="hover:text-blue-400">Posters</a>
+      <a href="#contact" class="hover:text-blue-400">Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="min-h-screen flex flex-col md:flex-row justify-center items-center text-center md:text-left p-8 md:p-16 bg-gradient-to-br from-gray-800 to-gray-900">
+    <div class="flex-1 flex flex-col justify-center items-center md:items-start space-y-6">
+      <h1 class="text-6xl font-bold text-blue-400 animate-fade-in">Welcome</h1>
+      <p class="text-xl text-gray-300 animate-fade-in">Hi, I'm M.Ayadi. I create stunning designs like logos, posters, and more.</p>
+      <a href="https://wa.me/yourwhatsappnumber" target="_blank" class="inline-block glow-button text-white px-8 py-3 rounded-full text-lg transition duration-300">
+        <i class="fab fa-whatsapp mr-2"></i>Contact Me
+      </a>
+    </div>
+    <div class="flex-1 hidden md:flex justify-center md:justify-end mt-8 md:mt-0">
+      <img src="PersoPic.webp" alt="Hero Image" class="w-80 h-96 object-cover rounded-lg">
+    </div>
+  </section>
+
+  <!-- Logo Design Section -->
+  <section id="logos" class="py-16 px-4 bg-gray-800">
+    <h2 class="text-4xl font-bold text-blue-400 text-center mb-8">Logo Designs</h2>
+    <div class="relative max-w-6xl mx-auto">
+      <div class="carousel flex space-x-4 p-4">
+        <!-- Logo Images -->
+        <img src="assets/logo.png" alt="Logo 1" class="cursor-pointer" onclick="openModal(this)">
+        <img src="assets/logo2.png" alt="Logo 2" class="cursor-pointer" onclick="openModal(this)">
+        <img src="assets/logo3.png" alt="Logo 3" class="cursor-pointer" onclick="openModal(this)">
+        <!-- <img src="https://via.placeholder.com/300x600" alt="Logo 4" class="cursor-pointer" onclick="openModal(this)">
+        <img src="https://via.placeholder.com/300x300" alt="Logo 5" class="cursor-pointer" onclick="openModal(this)">
+        <img src="https://via.placeholder.com/300x500" alt="Logo 6" class="cursor-pointer" onclick="openModal(this)">
+        <img src="https://via.placeholder.com/300x400" alt="Logo 7" class="cursor-pointer" onclick="openModal(this)"> -->
+      </div>
+      <!-- Carousel Buttons -->
+      <button class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition duration-300" onclick="prevSlide(this)">&#10094;</button>
+      <button class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition duration-300" onclick="nextSlide(this)">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- Poster Design Section -->
+  <section id="posters" class="py-16 px-4 bg-gray-900">
+    <h2 class="text-4xl font-bold text-blue-400 text-center mb-8">Poster Designs</h2>
+    <div class="relative max-w-6xl mx-auto">
+      <div class="carousel flex space-x-4 p-4">
+        <!-- Poster Images -->
+        <img src="assets/Pizza.png" alt="Poster 1" class="cursor-pointer" onclick="openModal(this)">
+        <img src="assets/burrito.png" alt="Poster 2" class="cursor-pointer" onclick="openModal(this)">
+        <img src="assets/hamburger.png" alt="Poster 3" class="cursor-pointer" onclick="openModal(this)">
+        <img src="assets/vposter1.png" alt="Poster 4" class="cursor-pointer" onclick="openModal(this)">
+        <img src="assets/vposter2.png" alt="Poster 5" class="cursor-pointer" onclick="openModal(this)">
+        <img src="assets/vposter3.png" alt="Poster 6" class="cursor-pointer" onclick="openModal(this)">
+        <img src="assets/banner.png" alt="Poster 7" class="cursor-pointer" onclick="openModal(this)">
+      </div>
+      <!-- Carousel Buttons -->
+      <button class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition duration-300" onclick="prevSlide(this)">&#10094;</button>
+      <button class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition duration-300" onclick="nextSlide(this)">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 px-4 text-center bg-gray-800">
+    <h2 class="text-4xl font-bold text-blue-400 mb-8">Contact Me</h2>
+    <a href="https://wa.me/yourwhatsappnumber" target="_blank" class="inline-block glow-button text-white px-8 py-3 rounded-full text-lg transition duration-300">
+      <i class="fab fa-whatsapp mr-2"></i>Message Me on WhatsApp
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-6 text-center bg-gray-800/80">
+    <p class="text-gray-400">&copy; 2023 M.Ayadi. All rights reserved.</p>
+  </footer>
+
+  <!-- Modal for Image Pop-up -->
+  <div class="modal" id="imageModal" onclick="closeModal()">
+    <img id="modalImage" src="" alt="Modal Image">
+  </div>
+
+  <script>
+    // Carousel Logic
+    function prevSlide(button) {
+      const carousel = button.parentElement.querySelector('.carousel');
+      carousel.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+
+    function nextSlide(button) {
+      const carousel = button.parentElement.querySelector('.carousel');
+      carousel.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+
+    // Modal Logic
+    function openModal(img) {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImage');
+      modal.classList.add('open');
+      modalImg.src = img.src;
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('imageModal');
+      modal.classList.remove('open');
+    }
+
+    // Hamburger Menu Logic
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    hamburger.addEventListener('click', () => {
+      menu.classList.toggle('open');
+    });
+
+    // Smooth Scroll for Header Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+        if (window.innerWidth < 768) {
+          menu.classList.remove('open'); // Close mobile menu after clicking a link
+        }
+      });
+    });
+  </script>
+</body>
+</html>
