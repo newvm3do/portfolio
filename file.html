@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,15 +21,18 @@
       align-items: center;
       z-index: 1000;
     }
+
     .modal.open {
       display: flex;
     }
+
     .modal img {
       max-width: 90%;
       max-height: 90%;
       border-radius: 8px;
       object-fit: contain;
     }
+
     /* Fixed aspect ratio for carousel images */
     .carousel img {
       width: 300px;
@@ -37,9 +41,11 @@
       border-radius: 8px;
       transition: transform 0.3s ease;
     }
+
     .carousel img:hover {
       transform: scale(1.05);
     }
+
     /* Sticky header */
     header {
       position: sticky;
@@ -47,126 +53,271 @@
       z-index: 100;
       backdrop-filter: blur(10px);
     }
+
     /* Hamburger menu */
     #menu {
       display: none;
     }
+
     #menu.open {
       display: flex;
     }
+
     /* Hide scrollbar but allow scrolling */
     .carousel {
       overflow-x: auto;
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none;
+      /* Firefox */
+      -ms-overflow-style: none;
+      /* IE and Edge */
     }
+
     .carousel::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, and Opera */
+      display: none;
+      /* Chrome, Safari, and Opera */
     }
+
     /* Footer */
     footer {
-      background: rgba(17, 24, 39, 0.8); /* Matching the dark theme */
+      background: rgba(17, 24, 39, 0.8);
+      /* Matching the dark theme */
       backdrop-filter: blur(10px);
     }
+
     /* Glow effect for the contact button */
     .glow-button {
-      background: linear-gradient(45deg, #3b82f6, #6366f1);
-      box-shadow: 0 0 15px rgba(59, 130, 246, 0.7);
-      transition: box-shadow 0.3s ease;
+      background: linear-gradient(45deg, #60a5fa, #3b82f6);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+      transition: all 0.3s ease;
     }
+
     .glow-button:hover {
-      box-shadow: 0 0 25px rgba(59, 130, 246, 1);
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+      transform: translateY(-2px);
+    }
+
+    /* Add new glowing section styles */
+    .section-glow {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glow-effect {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: 0;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .glow-effect {
+      animation: float 8s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-20px) scale(1.1);
+      }
+    }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Add these styles to your existing <style> section */
+    .carousel {
+      background: rgba(17, 24, 39, 0.5);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Update the carousel navigation buttons */
+    .carousel-nav-button {
+      background: rgba(59, 130, 246, 0.2);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: white;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .carousel-nav-button:hover {
+      background: rgba(59, 130, 246, 0.4);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+      filter: brightness(1.2);
     }
   </style>
 </head>
+
 <body class="bg-gray-900 text-white font-sans">
   <!-- Header -->
-  <header class="bg-gray-800/80 py-4 px-6">
+  <header class="bg-gray-900/95 py-4 px-6">
     <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-blue-400">My Portfolio</h1>
+      <h1 class="text-2xl font-bold text-indigo-400">My Portfolio</h1>
       <nav class="hidden md:flex space-x-6">
-        <a href="#hero" class="hover:text-blue-400">Home</a>
-        <a href="#logos" class="hover:text-blue-400">Logos</a>
-        <a href="#posters" class="hover:text-blue-400">Posters</a>
-        <a href="#contact" class="hover:text-blue-400">Contact</a>
+        <a href="#hero" class="hover:text-indigo-400">Home</a>
+        <a href="#logos" class="hover:text-indigo-400">Logos</a>
+        <a href="#posters" class="hover:text-indigo-400">Posters</a>
+        <a href="#audios" class="hover:text-indigo-400">Voice Overs</a>
+        <a href="#contact" class="hover:text-indigo-400">Contact</a>
       </nav>
-      <button id="hamburger" class="md:hidden text-blue-400">
+      <button id="hamburger" class="md:hidden text-indigo-400">
         <i class="fas fa-bars text-2xl"></i>
       </button>
     </div>
     <!-- Mobile Menu -->
     <div id="menu" class="md:hidden mt-4 flex flex-col space-y-2">
-      <a href="#hero" class="hover:text-blue-400">Home</a>
-      <a href="#logos" class="hover:text-blue-400">Logos</a>
-      <a href="#posters" class="hover:text-blue-400">Posters</a>
-      <a href="#contact" class="hover:text-blue-400">Contact</a>
+      <a href="#hero" class="hover:text-indigo-400">Home</a>
+      <a href="#logos" class="hover:text-indigo-400">Logos</a>
+      <a href="#posters" class="hover:text-indigo-400">Posters</a>
+      <a href="#audios" class="hover:text-indigo-400">Voice Overs</a>
+      <a href="#contact" class="hover:text-indigo-400">Contact</a>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section id="hero" class="min-h-screen flex flex-col md:flex-row justify-center items-center text-center md:text-left p-8 md:p-16 bg-gradient-to-br from-gray-800 to-gray-900">
-    <div class="flex-1 flex flex-col justify-center items-center md:items-start space-y-6">
-      <h1 class="text-6xl font-bold text-blue-400 animate-fade-in">Welcome</h1>
-      <p class="text-xl text-gray-300 animate-fade-in">Hi, I'm M.Ayadi. I create stunning designs like logos, posters, and more.</p>
-      <a href="https://wa.me/yourwhatsappnumber" target="_blank" class="inline-block glow-button text-white px-8 py-3 rounded-full text-lg transition duration-300">
+  <section id="hero"
+    class="section-glow min-h-screen flex flex-col md:flex-row justify-center items-center text-center md:text-left p-8 md:p-16 bg-gray-950">
+    <div class="glow-effect top-0 left-0"></div>
+    <div class="glow-effect bottom-0 right-0"></div>
+    <div class="content-wrapper flex-1 flex flex-col justify-center items-center md:items-start space-y-6">
+      <h1 class="text-6xl font-bold text-indigo-400 animate-fade-in">M.AYADI</h1>
+      <p class="text-xl text-gray-300 animate-fade-in">I create stunning designs like logos, posters, and more.</p>
+      <a href="https://wa.me/yourwhatsappnumber" target="_blank"
+        class="inline-block glow-button text-white px-8 py-3 rounded-full text-lg transition duration-300">
         <i class="fab fa-whatsapp mr-2"></i>Contact Me
       </a>
     </div>
     <div class="flex-1 hidden md:flex justify-center md:justify-end mt-8 md:mt-0">
-      <img src="PersoPic.webp" alt="Hero Image" class="w-80 h-96 object-cover rounded-lg">
+      <img src="PersoPic.webp" alt="Hero Image" class="w-96 object-cover rounded-lg">
     </div>
   </section>
 
   <!-- Logo Design Section -->
-  <section id="logos" class="py-16 px-4 bg-gray-800">
-    <h2 class="text-4xl font-bold text-blue-400 text-center mb-8">Logo Designs</h2>
-    <div class="relative max-w-6xl mx-auto">
-      <div class="carousel flex space-x-4 p-4">
-        <!-- Logo Images -->
-        <img src="assets/logo.png" alt="Logo 1" class="cursor-pointer" onclick="openModal(this)">
-        <img src="assets/logo2.png" alt="Logo 2" class="cursor-pointer" onclick="openModal(this)">
-        <img src="assets/logo3.png" alt="Logo 3" class="cursor-pointer" onclick="openModal(this)">
-        <!-- <img src="https://via.placeholder.com/300x600" alt="Logo 4" class="cursor-pointer" onclick="openModal(this)">
-        <img src="https://via.placeholder.com/300x300" alt="Logo 5" class="cursor-pointer" onclick="openModal(this)">
-        <img src="https://via.placeholder.com/300x500" alt="Logo 6" class="cursor-pointer" onclick="openModal(this)">
-        <img src="https://via.placeholder.com/300x400" alt="Logo 7" class="cursor-pointer" onclick="openModal(this)"> -->
+  <section id="logos" class="section-glow py-16 px-4 bg-gray-950">
+    <div class="glow-effect top-[20%] right-[10%]"></div>
+    <div class="glow-effect bottom-[20%] left-[30%]"></div>
+    <div class="content-wrapper">
+      <h2 class="text-4xl font-bold text-blue-300 text-center mb-8">Logo Designs</h2>
+      <div class="relative max-w-6xl mx-auto">
+        <div class="carousel flex space-x-4 p-4">
+          <!-- Logo Images -->
+          <img src="assets/logo.png" alt="Logo 1" class="cursor-pointer" onclick="openModal(this)">
+          <img src="assets/logo2.png" alt="Logo 2" class="cursor-pointer" onclick="openModal(this)">
+          <img src="assets/logo3.png" alt="Logo 3" class="cursor-pointer" onclick="openModal(this)">
+        </div>
+        <!-- Carousel Buttons -->
+        <button class="absolute top-1/2 left-2 transform -translate-y-1/2 carousel-nav-button"
+          onclick="prevSlide(this)">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="absolute top-1/2 right-2 transform -translate-y-1/2 carousel-nav-button"
+          onclick="nextSlide(this)">
+          <i class="fas fa-chevron-right"></i>
+        </button>
       </div>
-      <!-- Carousel Buttons -->
-      <button class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition duration-300" onclick="prevSlide(this)">&#10094;</button>
-      <button class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition duration-300" onclick="nextSlide(this)">&#10095;</button>
     </div>
   </section>
 
   <!-- Poster Design Section -->
-  <section id="posters" class="py-16 px-4 bg-gray-900">
-    <h2 class="text-4xl font-bold text-blue-400 text-center mb-8">Poster Designs</h2>
-    <div class="relative max-w-6xl mx-auto">
-      <div class="carousel flex space-x-4 p-4">
-        <!-- Poster Images -->
-        <img src="assets/Pizza.png" alt="Poster 1" class="cursor-pointer" onclick="openModal(this)">
-        <img src="assets/burrito.png" alt="Poster 2" class="cursor-pointer" onclick="openModal(this)">
-        <img src="assets/hamburger.png" alt="Poster 3" class="cursor-pointer" onclick="openModal(this)">
-        <img src="assets/vposter1.png" alt="Poster 4" class="cursor-pointer" onclick="openModal(this)">
-        <img src="assets/vposter2.png" alt="Poster 5" class="cursor-pointer" onclick="openModal(this)">
-        <img src="assets/vposter3.png" alt="Poster 6" class="cursor-pointer" onclick="openModal(this)">
-        <img src="assets/banner.png" alt="Poster 7" class="cursor-pointer" onclick="openModal(this)">
+  <section id="posters" class="section-glow py-16 px-4 bg-gray-950">
+    <div class="glow-effect top-[40%] left-[20%]"></div>
+    <div class="glow-effect bottom-[10%] right-[40%]"></div>
+    <div class="content-wrapper">
+      <h2 class="text-4xl font-bold text-blue-300 text-center mb-8">Poster Designs</h2>
+      <div class="relative max-w-6xl mx-auto">
+        <div class="carousel flex space-x-4 p-4">
+          <!-- Poster Images -->
+          <img src="assets/Pizza.png" alt="Poster 1" class="cursor-pointer" onclick="openModal(this)">
+          <img src="assets/burrito.png" alt="Poster 2" class="cursor-pointer" onclick="openModal(this)">
+          <img src="assets/hamburger.png" alt="Poster 3" class="cursor-pointer" onclick="openModal(this)">
+          <img src="assets/vposter1.png" alt="Poster 4" class="cursor-pointer" onclick="openModal(this)">
+          <img src="assets/vposter2.png" alt="Poster 5" class="cursor-pointer" onclick="openModal(this)">
+          <img src="assets/vposter3.png" alt="Poster 6" class="cursor-pointer" onclick="openModal(this)">
+          <img src="assets/banner.png" alt="Poster 7" class="cursor-pointer" onclick="openModal(this)">
+        </div>
+        <!-- Carousel Buttons -->
+        <button class="absolute top-1/2 left-2 transform -translate-y-1/2 carousel-nav-button"
+          onclick="prevSlide(this)">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="absolute top-1/2 right-2 transform -translate-y-1/2 carousel-nav-button"
+          onclick="nextSlide(this)">
+          <i class="fas fa-chevron-right"></i>
+        </button>
       </div>
-      <!-- Carousel Buttons -->
-      <button class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition duration-300" onclick="prevSlide(this)">&#10094;</button>
-      <button class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition duration-300" onclick="nextSlide(this)">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- Audio (Voice Over) Section -->
+  <section id="audios" class="section-glow py-16 px-4 bg-gray-950">
+    <div class="glow-effect top-[30%] right-[20%]"></div>
+    <div class="glow-effect bottom-[20%] left-[40%]"></div>
+    <div class="content-wrapper">
+      <h2 class="text-4xl font-bold text-blue-300 text-center mb-8">Voice Overs</h2>
+      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Audio Player 1 -->
+        <div class="bg-gray-800/70 p-4 rounded-lg backdrop-blur-lg">
+          <h3 class="text-xl font-semibold text-indigo-300 mb-2">Voice Over 1</h3>
+          <audio controls class="w-full mt-2">
+            <source src="assets/voice1.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+        <!-- Audio Player 2 -->
+        <div class="bg-gray-800/70 p-4 rounded-lg backdrop-blur-lg">
+          <h3 class="text-xl font-semibold text-indigo-300 mb-2">Voice Over 2</h3>
+          <audio controls class="w-full mt-2">
+            <source src="assets/voice2.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+        <!-- Audio Player 3 -->
+        <div class="bg-gray-800/70 p-4 rounded-lg backdrop-blur-lg">
+          <h3 class="text-xl font-semibold text-indigo-300 mb-2">Voice Over 3</h3>
+          <audio controls class="w-full mt-2">
+            <source src="assets/voice3.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="py-16 px-4 text-center bg-gray-800">
-    <h2 class="text-4xl font-bold text-blue-400 mb-8">Contact Me</h2>
-    <a href="https://wa.me/yourwhatsappnumber" target="_blank" class="inline-block glow-button text-white px-8 py-3 rounded-full text-lg transition duration-300">
-      <i class="fab fa-whatsapp mr-2"></i>Message Me on WhatsApp
-    </a>
+  <section id="contact" class="section-glow py-16 px-4 text-center bg-gray-950">
+    <div class="glow-effect top-[20%] left-[30%]"></div>
+    <div class="glow-effect bottom-[30%] right-[20%]"></div>
+    <div class="content-wrapper">
+      <h2 class="text-4xl font-bold text-blue-300 mb-8">Contact Me</h2>
+      <a href="https://wa.me/yourwhatsappnumber" target="_blank"
+        class="inline-block glow-button text-white px-8 py-3 rounded-full text-lg transition duration-300">
+        <i class="fab fa-whatsapp mr-2"></i>Message Me on WhatsApp
+      </a>
+    </div>
   </section>
 
   <!-- Footer -->
-  <footer class="py-6 text-center bg-gray-800/80">
+  <footer class="py-6 text-center bg-gray-800/90">
     <p class="text-gray-400">&copy; 2023 M.Ayadi. All rights reserved.</p>
   </footer>
 
@@ -221,4 +372,5 @@
     });
   </script>
 </body>
+
 </html>
